@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 class ErrorParser: AbstractErrorParser {
     func parse(_ result: Error) -> Error {
         return result
