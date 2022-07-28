@@ -39,4 +39,13 @@ class RequestFactory {
         return ChangeUserData(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
     }
     
+    func makeCatalogRequestFactory() -> CatalogRequestFactory {
+        let errorParser = makeErrorParser()
+        return Catalog(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+    
+    func makeGetGoodByIdRequestFactory() -> GoodByIdRequestFactory {
+        let errorParser = makeErrorParser()
+        return GoodById(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
 }
