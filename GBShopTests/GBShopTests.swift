@@ -9,15 +9,27 @@ import XCTest
 @testable import GBShop
 
 class GBShopTests: XCTestCase {
+    
+    var string: String?
 
     override func setUpWithError() throws {
+        string = "djhjkdshkjc"
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
+        string = nil
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    func testString1() {
+        let arg1 = 2
+        let arg2 = 3
+        let result = sum(arg1: arg1, arg2: arg2)
+        XCTAssertTrue(result == 5)
+
+    }
+    
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
@@ -32,5 +44,17 @@ class GBShopTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testString2() {
+        let arg1 = 2
+        let arg2 = 3
+        let result = sum(arg1: arg1, arg2: arg2)
+        XCTAssertTrue(result == 5, result.description)
+
+    }
+    func sum(arg1: Int, arg2: Int) -> Int{
+        return arg1 + arg2
+    }
+    
 
 }
