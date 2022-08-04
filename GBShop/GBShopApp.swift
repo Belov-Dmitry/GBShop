@@ -21,6 +21,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let auth = requestFactory.makeAuthRequestFatory()
         let registr = requestFactory.makeRegisterRequestFatory()
         let changeUserData = requestFactory.makeChangeUserDataRequestFactory()
+        let getCatalogData = requestFactory.makeCatalogRequestFactory()
+        let getGoodById = requestFactory.makeGetGoodByIdRequestFactory()
+        let addReview = requestFactory.makeAddReviewRequestFactory()
+        let removeReview = requestFactory.makeRemoveReviewRequestFactory()
         
         let user = User(id: 123,
                         login: "Somebody",
@@ -31,7 +35,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                         gender: "m",
                         creditCard: "9872389-2424-234224-234",
                         bio: "This is good! I think I will switch to another language")
-        
+              
         auth.login(userName: "Somebody", password: "mypassword") { response in
             switch response.result {
             case .success(let login):
@@ -75,14 +79,57 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 print(error.localizedDescription)
             }
         }
+        
+        getCatalogData.getCatalog(pageNumber: 1, categoryId: 1) { response in
+            switch response.result {
+            case .success(let getCatalogData):
+                print("getCatalogData:")
+                print(getCatalogData)
+            case .failure(let error):
+                print("getCatalogData error:")
+                print(error.localizedDescription)
+            }
+        }
+        
+        getGoodById.getGoodById(productId: 1) { response in
+            switch response.result {
+            case .success(let getGoodById):
+                print("getGoodById:")
+                print(getGoodById)
+            case .failure(let error):
+                print("getGoodById error:")
+                print(error.localizedDescription)
+            }
+        }
+        
+        addReview.addReview(userId: 123, text: "Текст отзыва") { response in
+            switch response.result {
+            case .success(let addReview):
+                print("addReview:")
+                print(addReview)
+            case .failure(let error):
+                print("addReview error:")
+                print(error.localizedDescription)
+            }
+        }
+        
+        removeReview.removeReview(commentID: 123) { response in
+            switch response.result {
+            case .success(let removeReview):
+                print("removeReview:")
+                print(removeReview)
+            case .failure(let error):
+                print("removeReview error:")
+                print(error.localizedDescription)
+            }
+        }
         return true
     }
 }
 
 @main
 struct GBShopApp: App {
-    
-    // inject into SwiftUI life-cycle via adaptor !!!
+
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {

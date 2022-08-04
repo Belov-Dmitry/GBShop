@@ -10,7 +10,7 @@ import Alamofire
 
 enum RequestRouterEncoding {
     case url, json
-    }
+}
 
 protocol RequestRouter: URLRequestConvertible {
     var baseUrl: URL { get }
@@ -23,12 +23,12 @@ protocol RequestRouter: URLRequestConvertible {
 
 extension RequestRouter {
     var fullUrl: URL {
-    return baseUrl.appendingPathComponent(path)
+        return baseUrl.appendingPathComponent(path)
     }
     var encoding: RequestRouterEncoding {
-    return .url
+        return .url
     }
-
+    
     func asURLRequest() throws -> URLRequest {
         var urlRequest = URLRequest(url: fullUrl)
         urlRequest.httpMethod = method.rawValue

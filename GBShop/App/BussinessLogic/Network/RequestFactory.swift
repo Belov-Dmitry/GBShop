@@ -39,4 +39,22 @@ class RequestFactory {
         return ChangeUserData(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
     }
     
+    func makeCatalogRequestFactory() -> CatalogRequestFactory {
+        let errorParser = makeErrorParser()
+        return Catalog(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+    
+    func makeGetGoodByIdRequestFactory() -> GoodByIdRequestFactory {
+        let errorParser = makeErrorParser()
+        return GoodById(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+    
+    func makeAddReviewRequestFactory() -> AddReviewRequestFactory {
+        let errorParser = makeErrorParser()
+        return AddReview(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+    func makeRemoveReviewRequestFactory() -> RemoveReviewRequestFactory {
+        let errorParser = makeErrorParser()
+        return RemoveReview(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
 }
