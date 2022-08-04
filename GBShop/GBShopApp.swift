@@ -23,6 +23,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let changeUserData = requestFactory.makeChangeUserDataRequestFactory()
         let getCatalogData = requestFactory.makeCatalogRequestFactory()
         let getGoodById = requestFactory.makeGetGoodByIdRequestFactory()
+        let addReview = requestFactory.makeAddReviewRequestFactory()
+        let removeReview = requestFactory.makeRemoveReviewRequestFactory()
         
         let user = User(id: 123,
                         login: "Somebody",
@@ -96,6 +98,28 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 print(getGoodById)
             case .failure(let error):
                 print("getGoodById error:")
+                print(error.localizedDescription)
+            }
+        }
+        
+        addReview.addReview(userId: 123, text: "Текст отзыва") { response in
+            switch response.result {
+            case .success(let addReview):
+                print("addReview:")
+                print(addReview)
+            case .failure(let error):
+                print("addReview error:")
+                print(error.localizedDescription)
+            }
+        }
+        
+        removeReview.removeReview(commentID: 123) { response in
+            switch response.result {
+            case .success(let removeReview):
+                print("removeReview:")
+                print(removeReview)
+            case .failure(let error):
+                print("removeReview error:")
                 print(error.localizedDescription)
             }
         }
